@@ -494,7 +494,7 @@ class RubikCube3D:
 
 def main():
     app = Ursina(
-        title="Rubik's Cube Agent - AI Solver",   # FIX: sin emojis
+        title="Rubik's Cube Agent",
         borderless=False,
         fullscreen=False,
         development_mode=False,
