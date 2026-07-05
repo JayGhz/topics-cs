@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evacuación por incendio — Simulación multiagente</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.164.1/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.164.1/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div id="overlay">
+    <div id="hud-top">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <h1>Evacuación por incendio</h1>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat" data-stat="elapsed"><b>0.0s</b><label>tiempo</label></div>
+        <div class="stat ok" data-stat="evacuated"><b>0</b><label>evacuados</label></div>
+        <div class="stat warn" data-stat="active"><b>0</b><label>activos</label></div>
+        <div class="stat danger" data-stat="trapped"><b>0</b><label>atrapados</label></div>
+        <div class="stat danger" data-stat="casualties"><b>0</b><label>víctimas</label></div>
+      </div>
+    </div>
+
+    <div id="panels-left">
+      <aside id="panel-config" class="side-panel">
+        <div class="panel-section">
+          <div class="section-title">Escenario</div>
+          <div class="btn-row">
+            <button id="btn-spark" class="btn btn-primary">Iniciar incendio</button>
+            <button id="btn-reset" class="btn">Reiniciar</button>
+          </div>
+        </div>
+
+        <div class="panel-section">
+          <div class="row-label"><span>Personas</span><b id="agents-value">48</b></div>
+          <input type="range" id="agents-slider" min="8" max="150" step="2" value="48" />
+        </div>
+
+        <div class="panel-section">
+          <div class="btn-row">
+            <button id="btn-pause" class="btn">Pausar</button>
+            <button id="btn-resume" class="btn btn-active">Reanudar</button>
+          </div>
+          <div class="row-label"><span>Velocidad</span><b id="speed-value">1.0×</b></div>
+          <input type="range" id="speed-slider" min="0.25" max="4" step="0.25" value="1" />
+        </div>
+
+        <div class="panel-section">
+          <div class="section-title">Cámara</div>
+          <div class="btn-row three">
+            <button id="cam-orbit" class="btn btn-active">Orbital</button>
+            <button id="cam-top" class="btn">Cenital</button>
+            <button id="cam-follow" class="btn">Seguir</button>
+          </div>
+        </div>
+      </aside>
+
+      <aside id="panel-evac" class="side-panel">
+        <div class="panel-section">
+          <div class="section-title">Evacuación</div>
+          <canvas id="evac-chart" width="212" height="52"></canvas>
+        </div>
+
+        <div class="legend">
+          <span><i class="dot dot-normal"></i>normal</span>
+          <span><i class="dot dot-panic"></i>pánico</span>
+          <span><i class="dot dot-trapped"></i>atrapado</span>
+          <span><i class="dot dot-casualty"></i>víctima</span>
+          <span><i class="dot dot-evac"></i>evacuado</span>
+        </div>
+      </aside>
+    </div>
+
+    <div id="hint">arrastra: orbitar · scroll: zoom · clic derecho: paneo</div>
+  </div>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
